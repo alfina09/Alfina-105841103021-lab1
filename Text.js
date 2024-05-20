@@ -1,13 +1,19 @@
-import { StyleShee, Text, View, Image, Button } from "react-native";
+import { StyleSheet, Text, View, Image, Button } from "react-native";
 const TextCustom = () => {
   return (
     <View style={{
         flex: 1,
         backgroundColor: "white",
-        justifyContent: "center",
-        alignItems: "flex-end",
-        flexDirection: "row",
-      <Text style={styles.text}>Login</Text>
+        justifyContent: "flex-start",
+        alignItems: "center",
+
+    }}>
+      <Text style={{
+        fontSize: 40,
+        fontWeight: 'bold',
+        marginTop: 60,
+      }}>FlowerShop</Text>
     </View>
-  );
+  )
 }
+export default TextCustom;
