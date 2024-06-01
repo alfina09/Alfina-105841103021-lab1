@@ -3,7 +3,7 @@ import React from 'react';
 import GoogleLogo from './assets/facebook.png';
 import FacebookLogo from './assets/google.png';
 
-const Signup = ({ backgroundColor = '#f7f7f7', text = 'Sign Up' }) => {
+const App = ({ backgroundColor = '#f7f7f7', text = 'Sign Up' }) => {
     return (
         <View style={[ styles.container, { backgroundColor }]}>
         <Text style={ styles.title}>{text}</Text>
@@ -113,4 +113,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Signup;
+export default App;
