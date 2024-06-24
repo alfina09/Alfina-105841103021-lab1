@@ -1,31 +1,26 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-const ForgotPassword = ({ backgroundColor = '#f7f7f7', text = 'Forgot password' }) => {
+export default function ForgotPassword() {
+const navigation = useNavigation();
     return (
-        <View style={[styles.container, { backgroundColor }]}>
-            <TouchableOpacity style={styles.backIconContainer}>
-                <Text style={styles.backIcon}>{'<'} </Text>
-            </TouchableOpacity>
-            <Text style={styles.title}>{text}</Text>
-            <Text style={styles.instruction}>
-                Please, enter your email address. You will receive a link to create a new password via email.
-            </Text>
-            <View style={styles.inputContainer}>
-                <Text style={styles.label}>Email</Text>
+        <View style={styles.container}>
+            <Text style={styles.titleText}>Forgot Password</Text>
+            <Text style={styles.infoText}>Please enter your email address. You will receive a link to create a new password via email.</Text>
                 <TextInput
-                    style={styles.textInput}
+                    style={styles.input}
                     placeholder="Email"
                     keyboardType="email-address"
+                    autoCapitalize='none'
                 />
-                <Text style={styles.errorMessage}>Not a valid email address. Should be your@email.com</Text>
-            </View>
-            <TouchableOpacity style={styles.sendButton}>
+                <Text style={styles.errorText}>Not a valid email address. Should be your@email.com</Text>
+            <TouchableOpacity style={styles.sendButton} onPress={() => navigation.navigate('ResetPassword')}>
                 <Text style={styles.sendButtonText}>SEND</Text>
             </TouchableOpacity>
         </View>
     );
-};
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -34,27 +29,20 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 20,
     },
-    backIconContainer: {
-        position: 'absolute',
-        top: 40,
-        left: 20,
-    },
-    backIcon: {
-        fontSize: 24,
-        color: 'black',
-    },
-    title: {
+    titleText: {
         fontSize: 32,
         marginBottom: 20,
         fontWeight: 'bold',
+        color: 'black',
+        fontFamily: '../assets/fonts/Metropolis-Bold',
     },
-    instruction: {
+    infoText: {
         fontSize: 16,
-        textAlign: 'center',
+        color: 'black',
         marginBottom: 20,
-        paddingHorizontal: 20,
+        fontFamily: './assets/font/Metropolis-SemiBold',
     },
-    inputContainer: {
+    input: {
         width: '100%',
         maxWidth: 400,
         padding: 20,
@@ -66,23 +54,12 @@ const styles = StyleSheet.create({
         shadowRadius: 8,
         elevation: 5,
         marginBottom: 20,
+        fontFamily: '../assets/fonts/Metropolis-SemiBold',
     },
-    label: {
-        fontSize: 14,
-        color: 'red',
-        marginBottom: 5,
-    },
-    textInput: {
-        marginBottom: 10,
-        padding: 10,
-        borderWidth: 1,
-        borderColor: 'red',
-        borderRadius: 4,
-        fontSize: 16,
-    },
-    errorMessage: {
+    errorText: {
         color: 'red',
         fontSize: 12,
+        marginBottom: 40,
     },
     sendButton: {
         backgroundColor: 'red',
@@ -93,9 +70,9 @@ const styles = StyleSheet.create({
         maxWidth: 400,
     },
     sendButtonText: {
-        color: '#fff',
+        color: 'white',
         fontSize: 16,
+        fontVariant: 'bold',
+        fontFamily: '../assets/fonts/Metropolis-SemiBold',
     },
 });
-
-export default ForgotPassword;

@@ -1,43 +1,43 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useNavigation } from '@react-navigation/native';
 
-import GoogleLogo from '../assets/facebook.png';
-import FacebookLogo from '../assets/google.png';
+export default function LoginPage() {
+  const navigation = useNavigation();
 
-const LoginPage = ({ backgroundColor = '#f7f7f7', text = 'Login' }) => {
-    return (
-        <View style={[styles.container, { backgroundColor }]}>
-            <Text style={styles.title}>{text}</Text>
-            <View style={styles.inputContainer}>
-                <TextInput
-                    style={styles.textInput}
-                    placeholder="Email"
-                    keyboardType="email-address"/>
-                <TextInput
-                    style={styles.textInput}
-                    placeholder="Password"
-                    secureTextEntry/>
-            </View>
-            <View style={styles.footer}>
-                <Text style={styles.footerText}>Don't have an account? </Text>
-                <Text style={styles.footerLink}>Sign up</Text>
-            </View>
-            <TouchableOpacity style={styles.loginButton}>
-                <Text style={styles.loginButtonText}>LOGIN</Text>
-            </TouchableOpacity>
-            <Text style={styles.orText}>Or log in with social account</Text>
-            <View style={styles.socialButtonsContainer}>
-                <TouchableOpacity style={[styles.socialButton, { marginRight: 10 }]}>
-                    <Image source={GoogleLogo} style={styles.socialIcon} />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.socialButton}>
-                    <Image source={FacebookLogo} style={styles.socialIcon} />
-                </TouchableOpacity>
-            </View>
-        </View>
-    );
-};
-
+  return (
+    <View style={styles.container}>
+      <Text style={styles.titleText}>LOGIN</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Password"
+        secureTextEntry={true}
+      />
+      <TouchableOpacity style={styles.accountContainer} onPress={() => navigation.navigate('ForgotPassword')}>
+        <Text style={styles.accountText}>Don't have an account?</Text>
+        <Icon name="arrow-forward" size={20} color="red" />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.signUpButton} onPress={() => navigation.navigate('forgotPassword')}>
+        <Text style={styles.signUpButtonText}>Login</Text>
+      </TouchableOpacity>
+      <Text style={styles.orText}>Or login with social account</Text>
+      <View style={styles.socialContainer}>
+        <TouchableOpacity style={styles.socialButton}>
+          <Image source={require('../assets/facebook.png')} style={styles.socialIcon} />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.socialButton}>
+          <Image source={require('../assets/google.png')} style={styles.socialIcon} />
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+}
+            
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -45,35 +45,32 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 20,
     },
-    title: {
+    titleText: {
         fontSize: 32,
         marginBottom: 20,
         fontWeight: 'bold',
+        color: 'black',
+        textAlign: 'flex-start',
+        fontFamily: '../assets/fonts/Metropolis-Bold',
     },
-    inputContainer: {
+    input: {
+        height: 60,
+        borderColor: 'gray',
+        borderWidth: 1,
+        paddingHorizontal: 10,
         width: '100%',
         maxWidth: 400,
         marginBottom: 20,
     },
-    textInput: {
-        marginBottom: 10,
-        padding: 15,
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 4,
-        fontSize: 16,
-    },
-    footer: {
+    accountContainer: {
         flexDirection: 'row',
-        marginBottom: 10,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
     },
-    footerText: {
-        fontSize: 14,
-        color: '#777',
-    },
-    footerLink: {
-        fontSize: 14,
-        color: 'red',
+    accountText: {
+        fontSize: 16,
+        color: 'black',
+        fontFamily: '../assets/fonts/Metropolis-SemiBold',
     },
     loginButton: {
         backgroundColor: 'red',
@@ -85,17 +82,14 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     loginButtonText: {
-        color: '#fff',
+        color: 'white',
         fontSize: 16,
+        fontWeight: 'bold',
+        fontFamily: '../assets/fonts/Metropolis-SemiBold',
     },
-    orText: {
-        fontSize: 15,
-        color: '#777',
-        marginBottom: 20,
-    },
-    socialButtonsContainer: {
+    socialContainer: {
         flexDirection: 'row',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         width: '100%',
         maxWidth: 150, 
     },
@@ -114,8 +108,12 @@ const styles = StyleSheet.create({
     socialIcon: {
         width: 30, 
         height: 30, 
-
+    },
+    orText: {
+        fontSize: 15,
+        color: 'black',
+        marginBottom: 20,
+        textAlign: 'center',
+        fontFamily: '../assets/fonts/Metropolis-SemiBold.otf'
     },
 });
-
-export default LoginPage;

@@ -1,32 +1,19 @@
 import * as React from 'react';
-import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SignUp from './Pages/Signup';
 import LoginPage from './Pages/LoginPage';
-import { Button } from 'react-native';
+import ForgotPassword from './Pages/Forgotpassword';
 
-function HomeScreen({navigation}) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-      <Button
-      title="Go to Login"
-      onPress={() => navigation.navigate('Login')}/>
-    </View>
-  );
-}
+const Stack = createStackNavigator();
 
-const Stack = createNativeStackNavigator();
-
-function App() {
+export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Navigator initialRouteName="SignUp">
+        <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Login" component={LoginPage} />
+        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-export default App;
